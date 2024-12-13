@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closetly Proof of Concept</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome to Closetly</h1>
+
+    <h2>Upload a Clothing Item</h2>
+    <form action="/add" method="POST">
+        <label for="name">Item Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="color">Item Color:</label>
+        <input type="text" id="color" name="color" required><br><br>
+
+        <label for="image">Image URL:</label>
+        <input type="text" id="image" name="image" required><br><br>
+
+        <button type="submit">Add Item</button>
+    </form>
+
+    <h2>Your Clothing Items</h2>
+    <ul>
+        {% for item in clothing_items %}
+            <li>
+                <strong>{{ item.name }}</strong><br>
+                Color: {{ item.color }}<br>
+                Category: {{ item.category }}<br>
+                <img src="{{ item.image }}" alt="Item Image" width="100"><br><br>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
